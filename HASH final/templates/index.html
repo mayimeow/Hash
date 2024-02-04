@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Table Visualization</title>
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='bg.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-family: Arial, sans-serif;
+            color: #DE3163;
+            font-size: 60px;
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        label {
+            color: #ff6699;
+            font-size: 20px;
+        }
+        select, input[type="number"], textarea {
+            border: 2px solid #ff6699;
+            border-radius: 10px;
+            padding: 10px;
+            width: 80%;
+            margin-top: 5px;
+        }
+        input[type="submit"] {
+            background-color: #ff3385;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff0066;
+        }
+        h2 {
+            color: #ff3399;
+        }
+        p {
+            color: #ff3399;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hash Table</h1>
+
+    <form action="/process" method="post">
+        <label for="hash_function">Select Hash Function:</label>
+        <select name="hash_function" id="hash_function">
+            <option value="Hash Function 1">Hash Function 1</option>
+            <option value="Hash Function 2">Hash Function 2</option>
+            <option value="Hash Function 3">Hash Function 3</option>
+        </select>
+
+        <br><br>
+
+        <label for="num_commands">Number of Commands:</label>
+        <input type="number" name="num_commands" id="num_commands" required>
+
+        <br><br>
+
+        <label for="commands">Enter Commands (one per line):</label>
+        <textarea name="commands" id="commands" rows="5" required></textarea>
+
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if hash_table %}
+        <a href="/output" target="_blank"><h2>View Hash Table Contents</h2></a>
+    {% endif %}
+</body>
+</html>
